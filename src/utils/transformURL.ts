@@ -22,8 +22,7 @@ function encode(val: string) {
  * @param {any} params
  * @return {string} url
  */
-function buildURL(url: string, params?: any) {
-  console.log('url:', url)
+function transformURL(url: string, params?: any) {
   if (!params) return url
 
   const parts: string[] = []
@@ -31,7 +30,6 @@ function buildURL(url: string, params?: any) {
   Object.keys(params).forEach(key => {
     // 01-参数值为字符串
     let value = params[key]
-    console.log('value:', value)
 
     // 06-空值忽略
     if (value === null || typeof value === 'undefined') return
@@ -62,9 +60,7 @@ function buildURL(url: string, params?: any) {
     })
   })
 
-  console.log('parts:', parts)
   let serializedParams = parts.join('&')
-  console.log('serializedParams:', serializedParams)
 
   if (serializedParams) {
     const markIndex = url.indexOf('#')
@@ -80,4 +76,4 @@ function buildURL(url: string, params?: any) {
   return url
 }
 
-export { buildURL }
+export { transformURL }
